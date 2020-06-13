@@ -1,5 +1,7 @@
 const express = require('express');
 const routes = require('./routes/packageRoutes');
+const courseRoutes = require('./routes/CourseRoutes');
+const studentRoutes = require('./routes/UserRoutes');
 
 const mongoose = require('mongoose');
 
@@ -25,7 +27,9 @@ app.use(express.json());  //  useNewUrlParser: true, useFindAndModify: false
 
 app.use(express.urlencoded({extended:true}));
 
-app.use('/package',routes);
+
+app.use('/course',courseRoutes);
+app.use('/student',studentRoutes);
 
 
 app.listen(4000,function(){
