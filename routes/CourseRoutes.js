@@ -104,9 +104,6 @@ router.get("/getTotalOfCourses", async (req, res, next) => {
 
         res.send(JSON.stringify({message: "course details",array1:arr1,array2:arr2}));
 
-
-
-
     }
     catch(e){
 
