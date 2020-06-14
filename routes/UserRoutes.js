@@ -59,6 +59,10 @@ router.post('/login', async (req, res, next) => {
 
         }
 
+        else{
+
+        }
+
 
         });
 
@@ -74,38 +78,38 @@ router.post('/login', async (req, res, next) => {
 
 //book online course
 
-router.post("/bookCourse/:id", async (req, res) => {   // add a rating with comment to given product
+router.post("/bookCourse/:id", async (req, res) => {  
 
 
     try {
 
         //const student = {email : req.body.email};
 
-        const s = await Student.findOne({_id: req.body.userId});
+        const studentFind = await Student.findOne({_id: req.body.userId});
 
-        if(s === null)
+        if(studentFind === null)
         {
 
         }
         else{
 
-           const {email} = s;
+           const {email} = studentFind;
            const student = {email : email}; 
 
         console.log(s);
 
         const item =  await Course.findOneAndUpdate({_id: req.params.id}, {$push: {partcipants: student}}, {new: true});
 
-            const {name} = item;
+        //     const {name} = item;
 
-            console.log('name',name);
+        //     console.log('name',name);
 
-            const c = {courseName:name};
+        //     const c = {courseName:name};
 
-        const response = await Student.findOneAndUpdate({_id:  req.body.userId}, {$push: {courses: c}}, {new: true});
+        // const response = await Student.findOneAndUpdate({_id:  req.body.userId}, {$push: {courses: c}}, {new: true});
 
 
-        res.json('added');
+        res.send(JSON.stringify({message:'successfully booked'}));
         }
 
 

@@ -55,7 +55,7 @@ router.get('/allCourses', async (req, res, next) => {
     try {
 
         const courses = await Course.find();
-        res.send(JSON.stringify({message: "course details", course: courses}));
+        res.send(JSON.stringify({course: courses}));
 
 
     } catch (e) {
@@ -69,7 +69,7 @@ router.get('/course/:id', async (req, res, next) => {
 
         const course = await Course.findOne({_id: req.params.id});
 
-
+        console.log(course);
         res.send(JSON.stringify({message: "course details", course: course}));
 
       } catch (e) {
@@ -84,10 +84,10 @@ router.get("/getTotalOfCourses", async (req, res, next) => {
 
     try{
 
-        var arr = [];
+        var arr1 = [];
+        var arr2 = [];
 
-// append multiple values to the array
-//arr.push("Salut", "Hey");
+
 
         const courses = await Course.find();
         console.log(courses);
@@ -96,12 +96,13 @@ router.get("/getTotalOfCourses", async (req, res, next) => {
         {
             console.log('cq', c.partcipants.length);
             console.log('cq name',c.name);
-            arr.push({cl:c.partcipants.length,nm:c.name});
+            arr1.push(c.partcipants.length);
+            arr2.push(c.name);
 
         }
 
 
-        res.send(JSON.stringify({message: "course details", course: courses,array:arr}));
+        res.send(JSON.stringify({message: "course details",array1:arr1,array2:arr2}));
 
 
 
